@@ -1,0 +1,47 @@
+{
+  "header": [
+    {
+      "name": "Photos",
+      "link": "/"
+    },
+    {
+      "name": "Projects",
+      "link": "/projects/"
+    },
+    {
+      "name": "Blog",
+      "link": "/blog/"
+    },
+    {
+      "name": "Contact",
+      "link": "/contact/"
+    }
+  ],
+  "footer": [
+    {
+      "name": "Email",
+      "link": "mailto:&#100;&#98;&#101;&#108;&#108;&#64;&#98;&#116;&#114;&#46;&#112;&#109;",
+      "img": "mail.svg"
+    },
+    {
+      "name": "Linkedin",
+      "link": "https://www.linkedin.com/in/dashbell",
+      "img": "linkedin.svg"
+    },
+    {
+      "name": "Instagram",
+      "link": "http://instagram.com/dash.bell",
+      "img": "instagram.svg"
+    },
+    {
+      "name": "GitHub",
+      "link": "https://github.com/x8BitRain",
+      "img": "github.svg"
+    },
+    {
+      "name": "CodePen",
+      "link": "https://codepen.io/BitRain",
+      "img": "codepen.svg"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+---
+import { Image } from "@astrojs/image/components";
+import Navigation from "../data/navigation.json";
+const footer = Navigation.footer;
+---
+
+<footer class="footer">
+  <nav>
+    <div class="footer__content">
+      <div class="footer__content-links">
+        {
+          footer.map((link) => (
+            <a href={link.link} rel="noreferrer" target="_blank">
+              <Image
+                src={import(`../data/images/icons/${link.img}`)}
+                height="24"
+                width="24"
+                alt={link.name}
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+</footer>
+
+<style lang="scss">
+  .footer {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 30px !important;
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
+      0 0px 10px -5px rgba(0, 0, 0, 0.04);
+    .footer__content {
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      .footer__content-links {
+        display: flex;
+        flex-flow: wrap;
+        align-items: center;
+        a {
+          padding: 10px;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .footer__content {
+      padding: 20px !important;
+      .footer__content-links {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 570px) {
+    .footer__content-links {
+      justify-content: center;
+    }
+  }
+</style>

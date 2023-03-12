@@ -20,7 +20,7 @@
           "linkText": "Embroider"
         }
       ],
-      "image": "nightwatch.jpg"
+      "image": "nightwatch.png"
     },
     {
       "title": "WebHL",
@@ -46,7 +46,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "webhl.jpg"
+      "image": "webhl.png"
     },
     {
       "title": "Pasta.to",
@@ -79,7 +79,7 @@
           "linkText": "Pasta.to (coming soon)"
         }
       ],
-      "image": "pasta.jpg"
+      "image": "pasta.png"
     },
     {
       "title": "thestarposter.com",
@@ -106,7 +106,7 @@
           "linkText": "Heureka Prints"
         }
       ],
-      "image": "thestarposter.jpg",
+      "image": "thestarposter.png",
       "video": "thestarposter.mp4"
     },
     {
@@ -129,7 +129,7 @@
           "linkText": "Source"
         }
       ],
-      "image": "folder2json.jpg",
+      "image": "folder2json.png",
       "video": ""
     },
     {
@@ -152,7 +152,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "citysize.jpg",
+      "image": "citysize.png",
       "video": "citysize.mp4"
     },
     {
@@ -175,7 +175,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "svg2png.jpg"
+      "image": "svg2png.png"
     },
     {
       "title": "Corrupt.wiki",
@@ -200,7 +200,7 @@
           "linkText": "Github backend"
         }
       ],
-      "image": "corruptwiki.jpg"
+      "image": "corruptwiki.png"
     },
     {
       "title": "SVG/Emoji Corrupt",
@@ -222,7 +222,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "svg-emoji-corrupt.jpg",
+      "image": "svg-emoji-corrupt.png",
       "video": "svgemoji.mp4"
     },
     {
@@ -245,7 +245,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "ticket2calendar.jpg"
+      "image": "ticket2calendar.png"
     },
     {
       "title": "thepixelgrid.org",
@@ -281,7 +281,7 @@
           "linkText": "rumreggae-bali.net"
         }
       ],
-      "image": "rumreggae.jpg"
+      "image": "rumreggae.png"
     },
     {
       "title": "SourceRuns Forum",
@@ -299,7 +299,7 @@
           "linkText": "sourceruns.org (archive)"
         }
       ],
-      "image": "sourceruns.jpg"
+      "image": "sourceruns.png"
     },
     {
       "title": "btr.pm",
@@ -321,7 +321,7 @@
           "linkText": "Github"
         }
       ],
-      "image": "btrpm.jpg"
+      "image": "btrpm.png"
     },
     {
       "title": "Singapore Airshow 2018",
@@ -339,7 +339,7 @@
           "linkText": "View Album"
         }
       ],
-      "image": "airshow.jpg"
+      "image": "airshow.png"
     }
   ]
 }

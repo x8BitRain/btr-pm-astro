@@ -3,11 +3,11 @@
   box-shadow:
     0 8px 25px 0 rgba(0,0,0,0.1),
     0 0px 10px -5px rgba(0,0,0,0.04);
-  .footer_content {
+  .footer__content {
     padding: 40px;
     display: flex;
     align-items: center;
-    .footer_content-links {
+    .footer__content-links {
       display: flex;
       flex-flow: wrap;
       align-items: center;
@@ -20,9 +20,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .footer_content {
+  .footer__content {
     padding: 20px !important;
-    .footer_content-links {
+    .footer__content-links {
       width: 100%;
       justify-content: center;
     }
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 570px) {
-  .footer_content-links {
+  .footer__content-links {
     justify-content: center;
   }
 }

@@ -32,6 +32,7 @@ const { title, labels, body, links, image } = project;
       widths={[400, 800, 1200]}
       aspectRatio="auto"
       alt="descriptive text"
+      formats={["avif", "jpeg", "png", "webp"]}
     />
   </div>
   <div class="card__text">
@@ -74,8 +75,8 @@ const { title, labels, body, links, image } = project;
     margin: 20px 0 20px 0;
     overflow: hidden;
     background-color: #fff;
+    max-height: 415px;
     border-radius: 8px;
-    /*max-height: 410px;*/
     box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
       0 0 10px -5px rgba(0, 0, 0, 0.04);
     &__text {
@@ -115,12 +116,19 @@ const { title, labels, body, links, image } = project;
       display: flex;
       align-items: center;
       min-height: 350px;
+      transform: translateX(-14px);
+      filter: drop-shadow(0px 0px 6px #00000014);
       picture {
         padding: 0 !important;
       }
       img {
         width: 100%;
         //transform: scale(1.1);
+      }
+    }
+    .reverse-1 & {
+      &__image {
+        transform: translateX(16px);
       }
     }
   }
