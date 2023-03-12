@@ -67,7 +67,7 @@ const { title, labels, body, links, image } = project;
     </div>
   </div>
 </div>
-<style lang="scss">
+<style lang="scss" is:global>
   .card {
     display: flex;
     justify-content: center;
@@ -89,9 +89,23 @@ const { title, labels, body, links, image } = project;
       .links {
         display: flex;
         flex-direction: column;
+        .dark & {
+          a {
+            color: #4ea7ff;
+            &:hover {
+              color: #93c4ff;
+            }
+          }
+        }
       }
       &--title-container {
         display: flex;
+      }
+      .dark & {
+        h3,
+        p {
+          color: #fff !important;
+        }
       }
     }
     .label {
@@ -123,13 +137,15 @@ const { title, labels, body, links, image } = project;
       }
       img {
         width: 100%;
-        //transform: scale(1.1);
       }
     }
     .reverse-1 & {
       &__image {
         transform: translateX(16px);
       }
+    }
+    .dark & {
+      background-color: #242424 !important;
     }
   }
 
@@ -152,7 +168,6 @@ const { title, labels, body, links, image } = project;
         display: flex;
         justify-content: center;
         img {
-          //transform: scale(1.1) !important;
           margin: 0 auto;
         }
       }

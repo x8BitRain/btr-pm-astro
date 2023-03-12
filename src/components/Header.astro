@@ -1,0 +1,93 @@
+---
+import Navigation from "../data/navigation.json";
+const header = Navigation.header;
+import "../style/components/button.scss";
+import { Image } from "@astrojs/image/components";
+---
+
+<header class="header">
+  <canvas id="fun-canvas"></canvas>
+  <nav>
+    <div class="header_content">
+      <a href="/">
+        <Image
+          width="300"
+          height="100"
+          src={import("../data/images/icons/btr.svg")}
+          alt="Home"
+        />
+      </a>
+      <div class="header_content-links">
+        {
+          header.map((link) => (
+            <a href={link.link}>
+              <button>{link.name}</button>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style lang="scss">
+  .header {
+    position: relative;
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
+      0 0 10px -5px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+    .header_content {
+      height: 100px;
+      padding: 15px 20px 15px 20px;
+      display: flex;
+      align-items: center;
+      .header_content-links {
+        display: flex;
+        flex-flow: wrap;
+        align-items: center;
+      }
+    }
+  }
+
+  #fun-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    animation: fadein 8.5s;
+    border-radius: 8px;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 85%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .header {
+      margin: 10px;
+    }
+  }
+
+  @media screen and (max-width: 570px) {
+    .header {
+      img {
+        margin: 0 auto;
+        width: -webkit-fill-available;
+      }
+      .header_content {
+        height: auto;
+        display: block !important;
+        .header_content-links {
+          justify-content: center;
+        }
+      }
+    }
+  }
+</style>

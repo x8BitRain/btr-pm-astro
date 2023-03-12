@@ -1,13 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Projects from "../data/projects.json";
 const projectsList = Projects.all;
 import "../style/main.scss";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Projects">
+  <Header />
   <main class="projects">
     <section id="project_list">
       {
@@ -21,25 +23,7 @@ import "../style/main.scss";
 </Layout>
 <style lang="scss">
   body {
-    /*margin: 0;*/
     margin: 0 20%;
-  }
-
-  /*main {*/
-  /*  margin: 0 20%;*/
-  /*}*/
-
-  .header,
-  .footer {
-    margin: 0 !important;
-  }
-
-  .header {
-    margin-top: 30px !important;
-  }
-
-  .footer {
-    margin-bottom: 30px !important;
   }
 
   @media screen and (max-width: 1000px) {

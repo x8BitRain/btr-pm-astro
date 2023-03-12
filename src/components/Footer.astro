@@ -25,7 +25,7 @@ const footer = Navigation.footer;
   </nav>
 </footer>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .footer {
     background-color: #fff;
     border-radius: 8px;
@@ -43,8 +43,16 @@ const footer = Navigation.footer;
         a {
           padding: 10px;
           margin-right: 15px;
+          .dark & {
+            img {
+              filter: invert(1);
+            }
+          }
         }
       }
+    }
+    .dark & {
+      background-color: #242424 !important;
     }
   }
 
