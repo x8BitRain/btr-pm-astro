@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.16.0",
-    "astro": "^2.1.2"
+    "@astrojs/svelte": "^2.1.0",
+    "astro": "^2.1.2",
+    "astro-imagetools": "^0.8.1",
+    "svelte": "^3.54.0"
   },
   "devDependencies": {
     "prettier": "^2.8.4",
     "prettier-plugin-astro": "^0.8.0",
-    "sass": "^1.59.2"
+    "sass": "^1.59.2",
+    "sharp": "^0.31.3"
   }
 }

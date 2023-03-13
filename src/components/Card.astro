@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
+import { Picture } from "astro-imagetools/components";
 interface Labels {
   text: string;
   color: string;
@@ -11,7 +11,7 @@ interface Links {
   linkText: string;
 }
 
-export interface Project {
+interface Project {
   title: string;
   labels: Labels[];
   body: string;
@@ -26,11 +26,11 @@ const { title, labels, body, links, image } = <Project>project;
 <div class={`card reverse-${index % 2 === 0 ? "1" : "0"}`}>
   <div class="card__image">
     <Picture
-      src={import(`../data/images/projects/${image}`)}
-      widths={[400, 800, 1200]}
-      aspectRatio="auto"
+      src={`/src/data/images/projects/${image}`}
+      sizes={"400, 800, 1200"}
       alt="descriptive text"
-      formats={["avif", "jpeg", "png", "webp"]}
+      format={["avif", "jpeg", "png", "webp"]}
+      placeholder="blurred"
     />
   </div>
   <div class="card__text">
@@ -78,6 +78,7 @@ const { title, labels, body, links, image } = <Project>project;
     box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
       0 0 10px -5px rgba(0, 0, 0, 0.04);
     &__text {
+      flex: 0.7;
       width: 90%;
       padding: 40px;
       .labels {
@@ -125,6 +126,7 @@ const { title, labels, body, links, image } = <Project>project;
       }
     }
     &__image {
+      flex: 1;
       display: flex;
       align-items: center;
       min-height: 350px;
