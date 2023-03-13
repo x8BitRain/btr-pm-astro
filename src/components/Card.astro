@@ -19,10 +19,8 @@ export interface Project {
   links: Links[];
 }
 
-interface Props extends Project {}
-
 const { project, index } = Astro.props;
-const { title, labels, body, links, image } = project;
+const { title, labels, body, links, image } = <Project>project;
 ---
 
 <div class={`card reverse-${index % 2 === 0 ? "1" : "0"}`}>
@@ -167,6 +165,10 @@ const { title, labels, body, links, image } = project;
       &__image {
         display: flex;
         justify-content: center;
+        transform: translateX(0px);
+        .reverse-1 & {
+          transform: translateX(0px);
+        }
         img {
           margin: 0 auto;
         }
