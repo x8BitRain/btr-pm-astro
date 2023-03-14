@@ -49,3 +49,25 @@ a {
     flex-direction: column !important;
   }
 }
+
+/* Scrollbar tings */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 100px;
+  .dark & {
+    background: #3c3c3c;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #f6f6f6;
+  .dark & {
+    background: #171717;
+  }
+}
