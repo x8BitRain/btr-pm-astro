@@ -47,9 +47,9 @@
 
 <div class="theme-switch">
   {#if (currentTheme === 'light')}
-    <img src="/src/data/images/icons/moon.svg" on:click={() => setPreference(Theme.dark)} alt="Dark Mode">
+    <img src="/moon.svg" on:click={() => setPreference(Theme.dark)} alt="Dark Mode">
   {:else}
-    <img src="/src/data/images/icons/sun.svg" on:click={() => setPreference(Theme.light)} alt="Light Mode">
+    <img src="/sun.svg" on:click={() => setPreference(Theme.light)} alt="Light Mode">
   {/if}
 </div>
 
