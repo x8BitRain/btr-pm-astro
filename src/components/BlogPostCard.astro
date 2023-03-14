@@ -1,0 +1,169 @@
+---
+import { Picture } from "astro-imagetools/components";
+const { post, index } = Astro.props;
+const {
+  alt,
+  author,
+  description,
+  img,
+  label,
+  published,
+  slug,
+  tags,
+  title,
+}: PostData = { ...post };
+
+interface PostData {
+  alt: string;
+  author: string;
+  description: string;
+  img: string;
+  label: string;
+  published: string;
+  slug: string;
+  tags: string;
+  title: string;
+}
+---
+
+<div class={`card reverse-${index % 2 === 0 ? "1" : "0"}`}>
+  <div class="card__image">
+    <Picture
+      src={`/src/data/images/blog/${slug}/${img}`}
+      sizes={"400, 800, 1200"}
+      alt="descriptive text"
+      format={["avif", "jpeg", "png", "webp"]}
+      placeholder="blurred"
+    />
+  </div>
+  <div class="card__text">
+    <div class="card__text--title-container">
+      <h3>
+        {title}
+      </h3>
+      <div class="labels">
+        <span class="label">
+          {label}
+        </span>
+      </div>
+    </div>
+    <p>{description}</p>
+    <div class="links">
+      <a href={`${slug}`} rel="noreferrer" target="_blank">READ</a>
+    </div>
+  </div>
+</div>
+
+<style lang="scss" is:global>
+  .card {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    overflow: hidden;
+    background-color: #fff;
+    max-height: 415px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
+      0 0 10px -5px rgba(0, 0, 0, 0.04);
+    &__text {
+      flex: 0.7;
+      width: 90%;
+      padding: 40px;
+      .labels {
+        display: flex;
+        align-items: center;
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        .dark & {
+          a {
+            color: #4ea7ff;
+            &:hover {
+              color: #93c4ff;
+            }
+          }
+        }
+      }
+      &--title-container {
+        display: flex;
+      }
+      .dark & {
+        h3,
+        p {
+          color: #fff !important;
+        }
+      }
+    }
+    .label {
+      height: 25px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      background: #0e76de;
+      line-height: 1.5;
+      font-size: 0.89rem;
+      color: #fff;
+      white-space: nowrap;
+      border-radius: 2px;
+      text-transform: capitalize;
+      font-weight: 600;
+      transform: scale(0.77);
+      &__dark {
+        color: #000 !important;
+      }
+    }
+    &__image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      min-height: 350px;
+      transform: translateX(-14px);
+      filter: drop-shadow(0px 0px 6px #00000014);
+      picture {
+        padding: 0 !important;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .reverse-1 & {
+      &__image {
+        transform: translateX(16px);
+      }
+    }
+    .dark & {
+      background-color: #242424 !important;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .card {
+      flex-direction: column !important;
+      max-height: unset !important;
+      margin: 10px 0 10px 0;
+      .card__text {
+        z-index: 10;
+        margin-top: -55px;
+        width: unset !important;
+        .links {
+          a {
+            font-size: 22px !important;
+          }
+        }
+      }
+      &__image {
+        display: flex;
+        justify-content: center;
+        transform: translateX(0px);
+        .reverse-1 & {
+          transform: translateX(0px);
+        }
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+</style>

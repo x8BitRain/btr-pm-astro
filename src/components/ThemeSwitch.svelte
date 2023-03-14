@@ -1,21 +1,17 @@
 <script lang="ts">
   import {onMount} from 'svelte'
-  type LightDark = 'light' | 'dark'
-  interface Window {
-    config: {
-      [index: string]: any
-    }
+  enum Theme {
+    dark = 'dark',
+    light = 'light'
   }
+  type LightDark = Theme.dark | Theme.light
 
-  const storageKey = "theme-preference";
   let currentTheme = undefined
-
-  const isDarkMode = Array.from(
-          document.getElementsByTagName("html")[0]?.classList
-  ).includes("dark");
+  const storageKey = "theme-preference";
 
   const changeCanvasTheme = (theme: LightDark) => {
-    if (theme === 'dark') {
+    if (theme === Theme.dark) {
+      // config is available on the window, exposed by fluid.js
       config.BACK_COLOR = { r: 33, g: 33, b: 33 }
     } else {
       config.BACK_COLOR = { r: 255, g: 255, b: 255 }
@@ -27,13 +23,13 @@
       return <LightDark>localStorage.getItem(storageKey);
     else
       return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+        ? Theme.dark
+        : Theme.light;
   };
 
   const reflectPreference = (theme: LightDark) => {
-    if (theme === "light") document.documentElement.classList.remove("dark");
-    if (theme === "dark") document.documentElement.classList.add("dark");
+    if (theme === Theme.light) document.documentElement.classList.remove(Theme.dark);
+    if (theme === Theme.dark) document.documentElement.classList.add(Theme.dark);
     changeCanvasTheme(theme)
   };
 
@@ -51,21 +47,27 @@
 
 <div class="theme-switch">
   {#if (currentTheme === 'light')}
-    <img src="/src/data/images/icons/moon.svg" on:click={() => setPreference('dark')} alt="Dark Mode">
+    <img src="/src/data/images/icons/moon.svg" on:click={() => setPreference(Theme.dark)} alt="Dark Mode">
   {:else}
-    <img src="/src/data/images/icons/sun.svg" on:click={() => setPreference('light')} alt="Light Mode">
+    <img src="/src/data/images/icons/sun.svg" on:click={() => setPreference(Theme.light)} alt="Light Mode">
   {/if}
 </div>
 
 <style lang="scss">
   .theme-switch {
-    position: absolute;
+    position: fixed;
     top: 74px;
     right: 77px;
+    cursor: pointer;
     .dark & {
       img {
         filter: invert(1);
       }
+    }
+    @media screen and (max-width: 1000px) {
+      position: absolute;
+      top: 30px;
+      right: 30px;
     }
   }
 </style>

@@ -305,20 +305,43 @@
       "title": "btr.pm",
       "labels": [
         {
+          "text": "Astro",
+          "color": "#8a47f4",
+          "labelTextDark": "false"
+        },
+        {
+          "text": "Svelte",
+          "color": "#db3300",
+          "labelTextDark": "false"
+        },
+        {
           "text": "11ty",
           "color": "#292929",
           "labelTextDark": "false"
+        },
+        {
+          "text": "HTML",
+          "color": "#264de4",
+          "labelTextDark": "false"
         }
       ],
-      "body": "The website you're on now! Built from scratch using 11ty, also an experiment in image compression and content delivery optimization.",
+      "body": "The website you're on now! Built from scratch using HTML, then 11ty, then Astro with a bit of Svelte. A good excuse to try out new static site generators and an experiment in image compression and content delivery optimization.",
       "links": [
         {
           "link": "https://btr.pm/",
           "linkText": "btr.pm/"
         },
         {
+          "link": "https://github.com/x8BitRain/btr-pm-astro",
+          "linkText": "Github (Astro)"
+        },
+        {
           "link": "https://github.com/x8BitRain/btr-pm-12ty",
-          "linkText": "Github"
+          "linkText": "Github (11ty)"
+        },
+        {
+          "link": "https://github.com/x8BitRain/btr-pm",
+          "linkText": "Github (OG)"
         }
       ],
       "image": "btrpm.png"

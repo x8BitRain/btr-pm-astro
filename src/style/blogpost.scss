@@ -1,17 +1,9 @@
-@import "blog";
 @import 'components/code-style.scss';
 
 body {
   padding: 0 2vw;
   margin: 0 auto !important;
   max-width: 1080px;
-}
-
-.blog_content {
-  margin: 20px 0 20px 0;
-  box-shadow:
-    0 8px 25px 0 rgba(0,0,0,0.1),
-    0 0 10px -5px rgba(0,0,0,0.04);
 }
 
 article {
@@ -23,6 +15,7 @@ article {
     box-sizing: border-box;
     text-align: center;
     margin: 35px 0;
+    border-radius: 8px;
     box-shadow:
       0 0 20px -10px rgba(0,0,0,0.25);
   }
@@ -52,6 +45,12 @@ article {
 
   em {
     color: #5d5d5d;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, em, p, li {
+  .dark & {
+    color: #fff;
   }
 }
 

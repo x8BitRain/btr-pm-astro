@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'mixins';
 
+* {
+  transition: background-color ease-in-out 250ms;
+}
+
 html {
   font-family: 'B612', sans-serif;
   -webkit-font-smoothing: antialiased;

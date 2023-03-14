@@ -1,15 +1,16 @@
-code[class*="language-"],
-pre[class*="language-"] {
+code,
+pre {
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
   color: #eee;
-  background: #2f2f2f;
+  background-color: #2f2f2f !important;
   font-family: Roboto Mono, monospace;
   font-size: 1em;
   line-height: 1.5em;
+  border-radius: 8px;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -21,27 +22,27 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
-code[class*="language-"]::-moz-selection,
-pre[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection,
-pre[class*="language-"] ::-moz-selection {
+code::-moz-selection,
+pre::-moz-selection,
+code ::-moz-selection,
+pre ::-moz-selection {
   background: #363636;
 }
 
-code[class*="language-"]::selection,
-pre[class*="language-"]::selection,
-code[class*="language-"] ::selection,
-pre[class*="language-"] ::selection {
+code::selection,
+pre::selection,
+code ::selection,
+pre ::selection {
   background: #363636;
 }
 
-:not(pre) > code[class*="language-"] {
+:not(pre) > code {
   white-space: normal;
   border-radius: 0.2em;
   padding: 0.1em;
 }
 
-pre[class*="language-"] {
+pre {
   overflow: auto;
   position: relative;
   margin: 1.5em 0;
@@ -54,7 +55,7 @@ pre[class*="language-"] {
   color: #fd9170;
 }
 
-[class*="language-"] .namespace {
+ .namespace {
   opacity: 0.7;
 }
 

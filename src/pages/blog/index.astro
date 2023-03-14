@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BlogPostCard from "../../components/BlogPostCard.astro";
+const markdownFiles = await Astro.glob("./*.mdx");
+import "../../style/main.scss";
+---
+
+<Layout title="Blog">
+  <main class="blog">
+    <section id="blog__list">
+      {
+        markdownFiles.map((post, index) => (
+          <BlogPostCard post={post.frontmatter} index={index} />
+        ))
+      }
+    </section>
+  </main>
+</Layout>
+
+<style lang="scss">
+  body {
+    margin: 0 20%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    body {
+      margin: 0 2% !important;
+    }
+    .header,
+    .footer {
+      margin-top: 5px !important;
+    }
+  }
+</style>

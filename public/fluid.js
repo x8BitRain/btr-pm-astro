@@ -24,10 +24,7 @@ SOFTWARE.
 
 ("use strict");
 
-const themePreference = localStorage.getItem("theme-preference");
 let canvas = document.getElementById("fun-canvas");
-const isDarkMode = themePreference === "dark";
-console.log(isDarkMode);
 resizeCanvas();
 
 let config = {
