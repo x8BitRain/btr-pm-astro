@@ -10,10 +10,15 @@ const footer = Navigation.footer;
       <div class="footer__content-links">
         {
           footer.map((link) => (
-            <a href={link.link} rel="noreferrer" target="_blank">
+            <a
+              href={link.link}
+              rel="noreferrer"
+              target="_blank"
+              aria-label={link.name}
+            >
               <FooterIcon
                 image={`../data/images/icons/${link.img}`}
-                alt={link.alt}
+                alt={link.name}
               />
             </a>
           ))

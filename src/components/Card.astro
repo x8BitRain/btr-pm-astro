@@ -43,7 +43,7 @@ const { title, labels, body, links, image } = <Project>project;
           labels.map((label) => (
             <span
               class={`label ${
-                label.labelTextDark == "true" ? "card-label__dark" : ""
+                label.labelTextDark == "true" ? "label--dark" : ""
               }`}
               style={`background: ${label.color}`}
             >
@@ -121,7 +121,7 @@ const { title, labels, body, links, image } = <Project>project;
       text-transform: capitalize;
       font-weight: 600;
       transform: scale(0.77);
-      &__dark {
+      &--dark {
         color: #000 !important;
       }
     }
