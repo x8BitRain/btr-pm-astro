@@ -1,6 +1,37 @@
 {
   "all": [
     {
+      "title": "webXash",
+      "labels": [
+        {
+          "text": "Vue",
+          "color": "#008732",
+          "labelTextDark": "false"
+        },
+        {
+          "text": "WebAssembly",
+          "color": "#654ef1",
+          "labelTextDark": "false"
+        }
+      ],
+      "body": "Playable Half-Life in the browser with Xash3D and its port to the browser with emscripten with loadable games via ZIPs from your disk. With improved fullscreen and resizable window support.",
+      "links": [
+        {
+          "link": "https://x8bitrain.github.io/webXash/",
+          "linkText": "webXash"
+        },
+        {
+          "link": "https://github.com/x8BitRain/webXash/",
+          "linkText": "GitHub"
+        },
+        {
+          "link": "https://github.com/FWGS/xash3d-fwgs",
+          "linkText": "Xash3D"
+        }
+      ],
+      "image": "webxash.png"
+    },
+    {
       "title": "Nightwatch",
       "labels": [
         {
