@@ -42,7 +42,6 @@
   onMount(() => {
     const theme = getColorPreference()
     setPreference(theme)
-    config.PAUSED = false;
   })
 </script>
 
