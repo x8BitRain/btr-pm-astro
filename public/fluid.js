@@ -24,6 +24,13 @@ SOFTWARE.
 
 ("use strict");
 
+const storageKey = "theme-preference";
+
+const bgColor =
+  localStorage.getItem(storageKey) === "dark"
+    ? { r: 33, g: 33, b: 33 }
+    : { r: 255, g: 255, b: 255 };
+
 let canvas = document.getElementById("fun-canvas");
 resizeCanvas();
 
@@ -42,7 +49,7 @@ let config = {
   COLORFUL: true,
   COLOR_UPDATE_SPEED: 30,
   PAUSED: false,
-  BACK_COLOR: { r: 33, g: 33, b: 33 },
+  BACK_COLOR: bgColor,
   TRANSPARENT: false,
   BLOOM: false,
   BLOOM_ITERATIONS: 8,
