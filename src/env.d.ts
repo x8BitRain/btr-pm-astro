@@ -3,4 +3,4 @@
 // Global type for canvas config located in fluid.js
 const config: {
   [key: string]: any;
-};
+} = {};

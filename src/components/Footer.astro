@@ -1,6 +1,6 @@
 ---
-import { Image } from "@astrojs/image/components";
 import Navigation from "../data/navigation.json";
+import FooterIcon from "./FooterIcon.astro";
 const footer = Navigation.footer;
 ---
 
@@ -8,54 +8,16 @@ const footer = Navigation.footer;
   <nav>
     <div class="footer__content">
       <div class="footer__content-links">
-        <a href="mailto:dbell@btr.pm" rel="noreferrer" target="_blank">
-          <Image
-            src={import(`../data/images/icons/mail.svg`)}
-            height="24"
-            width="24"
-            alt="Email"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/dashbell"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <Image
-            src={import(`../data/images/icons/linkedin.svg`)}
-            height="24"
-            width="24"
-            alt="Email"
-          />
-        </a>
-        <a
-          href="http://instagram.com/dash.bell"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <Image
-            src={import(`../data/images/icons/instagram.svg`)}
-            height="24"
-            width="24"
-            alt="Instagram"
-          />
-        </a>
-        <a href="https://github.com/x8BitRain" rel="noreferrer" target="_blank">
-          <Image
-            src={import(`../data/images/icons/github.svg`)}
-            height="24"
-            width="24"
-            alt="GitHub"
-          />
-        </a>
-        <a href="https://codepen.io/BitRain" rel="noreferrer" target="_blank">
-          <Image
-            src={import(`../data/images/icons/codepen.svg`)}
-            height="24"
-            width="24"
-            alt="CodePen"
-          />
-        </a>
+        {
+          footer.map((link) => (
+            <a href={link.link} rel="noreferrer" target="_blank">
+              <FooterIcon
+                image={`../data/images/icons/${link.img}`}
+                alt={link.alt}
+              />
+            </a>
+          ))
+        }
       </div>
     </div>
   </nav>
