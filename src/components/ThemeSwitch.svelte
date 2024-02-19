@@ -6,7 +6,7 @@
   }
   type LightDark = Theme.dark | Theme.light
 
-  let currentTheme = undefined
+  let currentTheme: string | undefined = undefined
   const storageKey = "theme-preference";
 
   const changeCanvasTheme = (theme: LightDark) => {

@@ -9,9 +9,11 @@ import "../../style/main.scss";
   <main class="blog">
     <section id="blog__list">
       {
-        markdownFiles.map((post, index) => (
-          <BlogPostCard post={post.frontmatter} index={index} />
-        ))
+        markdownFiles
+          .reverse()
+          .map((post, index) => (
+            <BlogPostCard post={post.frontmatter} index={index} />
+          ))
       }
     </section>
   </main>

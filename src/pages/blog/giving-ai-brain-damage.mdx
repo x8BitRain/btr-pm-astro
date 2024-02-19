@@ -1,0 +1,465 @@
+---
+title: Giving AI Brain Damage
+description: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and no profit whatsoever.
+img: preview.png
+slug: giving-ai-brain-damage
+alt: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and no profit whatsoever.
+published: 20 February 2024
+label: AI
+author: Dashiell Bell
+tags: blogpost
+layout: "../../layouts/BlogLayout.astro"
+---
+
+import { Picture } from "astro-imagetools/components";
+
+# Giving AI Brain Damage
+
+##### 20 February 2024
+
+Here's an idea: What would happen if you changed a bunch of different bytes in an AI model's file?
+
+### **[Click here to skip to the results.](#the-results)**
+
+AI models are black boxes, they're extremely opaque and not at all easy to tell why a model outputs what it does once it's been trained.
+
+They come in these formats like .safetensors or .ckpt or the old .BIN. They're blobs with a header containing some metadata, alignments,
+block counts and weights and biases, etc, encoded in a format specific to the method in which the model was trained.
+They might even be a [GGUF](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md) file, but otherwise it's just a binary data.
+
+What happens when you take one of these files and just, oh, I don't know, add 3 bytes to every 150th byte?
+
+We know the effects of this with video games, ROM dumps can be altered with in the same manner often to comical and surreal effect, these are called [video game corruptions](https://corrupt.wiki/).
+Let's apply this same method to a chatbot/Large language model's files and see what happens, later I'll try an image generation model.
+
+### Corrupting large language models (LLMs)
+
+#### Setup
+
+I chose [tiny-llama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0/tree/main) to corrupt as it's a pretty lightweight model and small, about 640 MB.
+To run the model I used [ollama.com](https://ollama.com/) as a way to interface with tiny-llama and the [open-webui](https://github.com/open-webui/open-webui) as a chat box to prompt it with.
+
+#### Method
+
+You can pretty trivially write a script that loops through all the bytes in a file and changes them at random, like [this one](https://github.com/Cocoatwix/Scares-Scrambler-S/blob/master/Engine.py#L422)
+but I'm going to use the classic, [Vinesauce ROM Corruptor]() that is a GUI wrapper around this concept with some extra parameters like how many bytes to skip before modifying a value.
+
+The model file I'm looking for is under `~/.ollama/models`, it's contains the model files, the filenames are their SHA256 hashes.
+The one I'm looking for is the 673MB file, as it matches the size of the file that was downloaded via `ollama run tinyllama` [context](https://ollama.com/library/tinyllama).
+Modifying this directly should be the go.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/1.png`}
+  sizes={"400, 800, 1200"}
+  alt="the ollama folder"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+To corrupt the data I'll need to choose a starting point and ending point, a hex address to start from and end on. We want to avoid the file header entirely as modifying that could render the file unreadable.
+There's a ton of information at the beginning of the file that looks like it could be important perhaps part of the header, in case some kind of check is run on that data to ensure validity I just skipped all of that and chose.
+`0x005600C2` as a starting point
+
+Skip the stripey header data, no idea what it contains or why it looks like this, I chose the starting byte mostly as an educated guess.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/2.png`}
+  sizes={"400, 800, 1200"}
+  alt="stripey header data"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+I chose `
+` as the ending byte. It's not the very last byte of the file as there could be some data at the end that's important that we should not modify, I'm trying to avoid modification that will cause the model to not run or cause the daemon to crash.
+Just guessing values by looking at the "shape" of the hex data.
+
+Now to the actual corruption part, I chose the following settings:
+
+Add 2 bytes to every 120th byte.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/3.png`}
+  sizes={"400, 800, 1200"}
+  alt="dry run"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+That's about 5.3mb of data modified in the 640mb model file, that seems pretty substantial considering this is data corruption I'm doing here.
+I'm starting at these values to see if there's a noticeable difference in how the model outputs.
+
+### The results
+
+First a dry run, let's see what it says without any corruption:
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/4.png`}
+  sizes={"400, 800, 1200"}
+  alt="corruption result 1"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+---
+
+Okay, not bad for a 600mb model, Singapore is definitely not the 4th smallest country by area but the rest is mostly accurate.
+
+Let's see what it says after corruption.
+
+---
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/5.png`}
+  sizes={"400, 800, 1200"}
+  alt="corruption result 2"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+---
+
+I'm surprised that even worked at all.
+It's certainly not true, it's not even a fact, just random words with cyrillic, Chinese, Latvian(!?) characters inserted at random. Looks more like a Markov chain than a multi-billion parameter LLM, let's tone down the corruption a bit.
+
+Now what happens if I add 2 bytes to every 200th byte, aka 3mb of corrupted data out of 640mb.
+
+---
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/6.png`}
+  sizes={"400, 800, 1200"}
+  alt="corruption result 3"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+---
+
+**SINGAPOROP!**
+
+The craziest thing about this result is it looks like it's trying to write its response in JSON. It's not valid JSON but almost. Missing quotes and commas everywhere.
+It looks like it's trying to say a fact but gets very confused quickly. Notice how it tries to mention ASEAN (Association of Southeast Asian Nations) but stops and has to clarify, in parentheses, that it means (America/Sea).
+Wrong area of the world, but I can see what it's getting at.
+
+It follows this pattern of falling over itself trying to mention relevant acronyms, spelling them out incorrectly in (sometimes (nested)) parentheses, in JSON format. Interesting...
+
+Let's try adding 2 bytes to every 280th byte:
+
+---
+
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/7.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 4"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+**SINGAPOLIC!**
+
+Way more coherent but it still rambles on like a drunk Orson Welles. I like how it completely screws up its units.
+Mentioning a dollar value and clarifying (in (parentheses (again))) that it's approximately a completely different amount in an unspecified unit. But then
+"a bit more than 100m and two-and-a-half-inches from the city of Singapore" is really specific, despite not mentioning the thing that is 100m and two-and-a-half-inches from Singapore City,
+What is it? The Space Centre with the highest peak!? We'll never know.
+
+This seems like a pretty nice corruption value to ask it some more stuff, let's try a simple question:\
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/8.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 5"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+Thanks, I did have a great time, although it's still looking, and it is an in-depth task, I don't think it has the AI in it to do it by itself.
+
+Let's try something else.
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/9.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 6"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+MALFUNCTION! MALFUNCTION!
+
+What about something existential?
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/10.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 7"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+Wise words.
+
+Let's try lists of things:
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/11.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 8"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+I almost believed it for a second, one more:
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/12.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 9"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+Weirdest thing is, none of these names exist, they're all made up, I think it thinks I wanted it to make up a bunch of names.
+
+Now for my favorite, let's ask it to make some recipes:
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/13.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 10"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+I did not know Hungary has Puffins! Speaking of Hungary, can it do a nice Goulash?
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/16.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 10.5"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+Nothing like a blend of shiit and mushroom in Goulash, sounds delightful.
+
+Maybe it can do pizza as well?
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/14.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 11"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+You lost me at "whiteishy yeshy color", never heard of that color before, and I'm pretty sure "Pizzes" do not need to have a whshchehechespechchchehscheespochch.
+
+Maybe it can handle this simple kitchen task:
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/15.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 12"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+"You can then use it as you would". It does not know what an egg is or what you'd do with one.
+
+Dessert anyone?
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/17.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 12"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+...Peas and heavy cream, got it.
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/18.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 13"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+Don't forget to scoop the ladders out of your ramen, otherwise it'll taste like crap. Ketchup and mayonnaise are a must though.
+
+I'm going to end this LLM section with a simple request:
+
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/19.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 14"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+---
+
+I didn't notice this initially, but it appears the open-webui also asks the LLM for a chat title to put in the sidebar, some of which are loosely related while others are completely random.
+It even tries to explain the word "title" in one instance. Excellent.
+
+---
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/20.png`}
+    sizes={"400, 800, 1200"}
+    alt="corruption result 14"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>

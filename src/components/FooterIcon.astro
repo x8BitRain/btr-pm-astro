@@ -1,10 +1,15 @@
 ---
-import { Image } from "@astrojs/image/components";
-const { image, alt } = Astro.props;
-const images = import.meta.glob("../data/images/icons/*.svg", {
-  import: "default",
-});
-const imageSrc = await images[image]();
+import { Image } from "astro:assets";
+const { icon, alt } = Astro.props;
+const icons = import.meta.glob("../data/images/icons/*.svg");
+const res = icons[icon]();
 ---
 
-<Image src={imageSrc} height="24" width="24" alt={alt} />
+<Image
+  src={res}
+  height="24"
+  width="24"
+  alt={alt}
+  loading="eager"
+  format="svg"
+/>
