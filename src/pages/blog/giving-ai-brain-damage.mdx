@@ -12,6 +12,22 @@ layout: "../../layouts/BlogLayout.astro"
 ---
 
 import { Picture } from "astro-imagetools/components";
+import Teleport from "../../components/Teleport.svelte";
+
+<Teleport to={"#header-teleport"} client:load>
+  <video
+    width="100%"
+    autoPlay={true}
+    loop={true}
+    muted={true}
+    style={"filter: saturate(5)"}
+  >
+    <source
+      src={`/src/data/images/blog/${frontmatter.slug}/header-vid.mp4`}
+      type="video/mp4"
+    />
+  </video>
+</Teleport>
 
 # Giving AI Brain Damage
 
@@ -779,4 +795,267 @@ Here is a visual demonstration of what I mean by a scanning effect. If you incre
   />
 </video>
 
-Every
+<br />
+<br />
+
+Every subsequent generation at this corruption level is less detailed, brighter and more saturated, like it has too much HDR
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/42.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 20"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+So these corruption values work, this time I'll try to add 9 bytes to every 500 bytes instead of just 2 bytes for every 500 bytes.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/43.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 21"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+What I think has happened here is because I've increased a random set of bytes by 9 it's increased the intensity of some weight/bias/parameter in the model, and it's now focusing on specific element of the prompt,
+which is perhaps why it's focused on one element relevant to Prague in a lot of images, the [Old Town Hall Tower](https://maps.app.goo.gl/zKRbZ5x25pB2AJiQ7), but another part of the corruption has made it huge and
+turned it into an apartment building, in previous generation and in real life, the tower is nowhere near that big.
+
+Reminder that these are all using the same **"A photo of Prague's skyline at sunset, beautiful, 4K HD, professional photography."** prompt.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/44.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 22"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+Another version of this same prompt makes the same tower really, really tall but at the same time a lot less detailed, now it looks like a grain silo.
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/45.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 23"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+Why is this one tower the main focus of all the images with this corruption, why is it huge and why is not sunset anymore?
+
+<Picture
+  src={`/src/data/images/blog/${frontmatter.slug}/46.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 24"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
+/>
+
+Shifting the corrupt every nth byte setting around some more results in similar scale and focus changes and the amount of elements in the image seems to increase.
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/47.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 25"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/48.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 26"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+
+I increased the amount from adding 9 bytes to every 500 byte to 30. This results in incredibly blown out photos that looks like every color option in Photoshop set to 1000.
+
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/49.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 27"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/50.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 28"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+As a bonus I tried Amsterdam instead of Prague. This is how your average tourist sees Amsterdam after a handful of truffles.
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/56.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 32"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+
+Shifting the bytes around again to every 400 bytes, it now generates these interesting oil paint style images that are colored vaguely like a city.
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/51.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 29"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/52.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 30"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/54.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 31"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/55.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 32"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+As a bonus I tried a different, more basic prompt with some other corruption settings. This prompt is **A photo of an apple**
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/57.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 33"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/58.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 34"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/59.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 35"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+
+<Picture
+    src={`/src/data/images/blog/${frontmatter.slug}/60.png`}
+    sizes={"400, 800, 1200"}
+    alt="prague corruption result 36"
+    format={["avif", "jpeg", "png", "webp"]}
+    placeholder="blurred"
+    attributes={{
+        img: {
+            style: "box-shadow: none",
+        },
+    }}
+/>
+

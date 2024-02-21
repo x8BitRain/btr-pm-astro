@@ -64,7 +64,8 @@ interface PostData {
     background-color: #fff;
     max-height: 415px;
     border-radius: 8px;
-    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1),
+    box-shadow:
+      0 8px 25px 0 rgba(0, 0, 0, 0.1),
       0 0 10px -5px rgba(0, 0, 0, 0.04);
     &__text {
       flex: 0.7;
@@ -90,6 +91,7 @@ interface PostData {
         display: flex;
       }
       .dark & {
+        background-color: #242424 !important;
         h3,
         p {
           color: #fff !important;
@@ -117,8 +119,8 @@ interface PostData {
     &__image {
       flex: 1;
       display: flex;
-      align-items: center;
-      min-height: 350px;
+      /*align-items: center;*/
+      min-height: 250px;
       transform: translateX(-14px);
       filter: drop-shadow(0px 0px 6px #00000014);
       picture {
@@ -130,7 +132,7 @@ interface PostData {
     }
     .reverse-1 & {
       &__image {
-        transform: translateX(16px);
+        /*transform: translateX(16px);*/
       }
     }
     .dark & {
