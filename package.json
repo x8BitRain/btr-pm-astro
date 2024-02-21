@@ -23,6 +23,9 @@
     "sass": "^1.71.0",
     "sharp": "^0.33.2"
   },
+  "optionalDependencies": {
+    "@img/sharp-linux-x64": "^0.33.0"
+  },
   "volta": {
     "node": "18.15.0"
   }

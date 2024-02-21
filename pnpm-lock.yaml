@@ -24,6 +24,11 @@ dependencies:
     specifier: ^4.2.11
     version: 4.2.11
 
+optionalDependencies:
+  '@img/sharp-linux-x64':
+    specifier: ^0.33.0
+    version: 0.33.2
+
 devDependencies:
   prettier:
     specifier: ^3.2.5
@@ -679,7 +684,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@img/sharp-libvips-linuxmusl-arm64@1.0.1:
@@ -741,7 +745,6 @@ packages:
     requiresBuild: true
     optionalDependencies:
       '@img/sharp-libvips-linux-x64': 1.0.1
-    dev: true
     optional: true
 
   /@img/sharp-linuxmusl-arm64@0.33.2:
