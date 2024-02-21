@@ -10,6 +10,7 @@
         toDiv.innerHTML = ''
         const fragment = teleportWrapper.children[0];
         toDiv.appendChild(fragment)
+        fragment.children[0].classList.remove('hide')
     })
 
 </script>

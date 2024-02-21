@@ -79,6 +79,7 @@ import { Image } from "astro:assets";
     overflow: hidden;
     opacity: 0.2;
     pointer-events: none;
+    animation: delayShow 1.5s;
     .dark & {
       opacity: 0.2;
     }
@@ -98,6 +99,15 @@ import { Image } from "astro:assets";
     max-width: 100%;
     animation: fadein 12.5s;
     border-radius: 8px;
+  }
+
+  @keyframes delayShow {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100%;
+    }
   }
 
   @keyframes fadein {

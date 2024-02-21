@@ -14,8 +14,11 @@ layout: "../../layouts/BlogLayout.astro"
 import { Picture } from "astro-imagetools/components";
 import Teleport from "../../components/Teleport.svelte";
 
+import isDev from "../../utils/isDev.js";
+
 <Teleport to={"#header-teleport"} client:load>
   <video
+    className={"hide"}
     width="100%"
     autoPlay={true}
     loop={true}
@@ -24,7 +27,11 @@ import Teleport from "../../components/Teleport.svelte";
     style={"filter: saturate(5)"}
   >
     <source
-      src={`header-vid.mp4`}
+      src={
+        isDev
+          ? `/src/data/images/blog/${frontmatter.slug}/header-vid.mp4`
+          : `header-vid.mp4`
+      }
       type="video/mp4"
     />
   </video>
@@ -488,7 +495,6 @@ Don't forget to restart the ollama daemon every time you replace the model files
 <br />
 <br />
 
-
 ### Corrupting StableDiffusion
 
 I'm going to try the same corruption method with a [StableDiffusion](https://huggingface.co/spaces/stabilityai/stable-diffusion) model. This is a much larger model, weighing in at 5.2 GB.
@@ -796,7 +802,9 @@ Here is a visual demonstration of what I mean by a scanning effect. If you incre
 
 <video controls width="100%" autoPlay={true} loop={true}>
   <source
-    src={`41.webm`}
+    src={
+      isDev ? `/src/data/images/blog/${frontmatter.slug}/41.webm` : `41.webm`
+    }
     type="video/webm"
   />
 </video>
