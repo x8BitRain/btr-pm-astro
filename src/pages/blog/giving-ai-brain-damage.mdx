@@ -770,7 +770,7 @@ It's strange how it would regress back to generating random blobs of color then 
 
 I think what's happens when you gradually lower the amount of bytes to corrupt each time is like a scanning effect across the file, corruption occurs on different bytes in different places each time which probably effects vastly different model weights each time.
 
-Here is a visual demonstration of what I mean by a scanning effect. If you increase he "Corrupt every x bytes" value you're lowering the amount of total bytes corrupted while also changing the position of the corrupted bytes each time.
+Here is a visual demonstration of what I mean by a scanning effect. If you increase the "Corrupt every x bytes" value you're lowering the amount of total bytes corrupted while also changing the position of the next corrupted bytes each time. The green values being the values to corrupt.
 
 <video controls width="100%" autoPlay={true} loop={true}>
   <source
@@ -778,3 +778,5 @@ Here is a visual demonstration of what I mean by a scanning effect. If you incre
     type="video/webm"
   />
 </video>
+
+Every
