@@ -1,10 +1,10 @@
 ---
 title: Giving AI Brain Damage
-description: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and no profit whatsoever.
+description: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and zero profit.
 img: preview.png
 slug: giving-ai-brain-damage
-alt: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and no profit whatsoever.
-published: 20 February 2024
+alt: Corrupting and lobotomizing a chatbot to give it a kind of brain damage for fun and zero profit.
+published: 22 February 2024
 label: AI
 author: Dashiell Bell
 tags: blogpost
@@ -20,6 +20,7 @@ import Teleport from "../../components/Teleport.svelte";
     autoPlay={true}
     loop={true}
     muted={true}
+    controls={false}
     style={"filter: saturate(5)"}
   >
     <source
@@ -31,7 +32,7 @@ import Teleport from "../../components/Teleport.svelte";
 
 # Giving AI Brain Damage
 
-##### 20 February 2024
+##### {frontmatter.published}
 
 Here's an idea: What would happen if you changed a bunch of different bytes in an AI model's file?
 
@@ -880,182 +881,178 @@ Why is this one tower the main focus of all the images with this corruption, why
 Shifting the corrupt every nth byte setting around some more results in similar scale and focus changes and the amount of elements in the image seems to increase.
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/47.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 25"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/47.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 25"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/48.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 26"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/48.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 26"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
-
 
 I increased the amount from adding 9 bytes to every 500 byte to 30. This results in incredibly blown out photos that looks like every color option in Photoshop set to 1000.
 
-
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/49.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 27"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/49.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 27"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/50.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 28"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/50.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 28"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 As a bonus I tried Amsterdam instead of Prague. This is how your average tourist sees Amsterdam after a handful of truffles.
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/56.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 32"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/56.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 32"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
-
 
 Shifting the bytes around again to every 400 bytes, it now generates these interesting oil paint style images that are colored vaguely like a city.
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/51.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 29"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/51.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 29"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/52.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 30"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/52.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 30"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/54.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 31"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/54.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 31"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/55.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 32"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/55.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 32"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 As a bonus I tried a different, more basic prompt with some other corruption settings. This prompt is **A photo of an apple**
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/57.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 33"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/57.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 33"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/58.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 34"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/58.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 34"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/59.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 35"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/59.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 35"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
 
 <Picture
-    src={`/src/data/images/blog/${frontmatter.slug}/60.png`}
-    sizes={"400, 800, 1200"}
-    alt="prague corruption result 36"
-    format={["avif", "jpeg", "png", "webp"]}
-    placeholder="blurred"
-    attributes={{
-        img: {
-            style: "box-shadow: none",
-        },
-    }}
+  src={`/src/data/images/blog/${frontmatter.slug}/60.png`}
+  sizes={"400, 800, 1200"}
+  alt="prague corruption result 36"
+  format={["avif", "jpeg", "png", "webp"]}
+  placeholder="blurred"
+  attributes={{
+    img: {
+      style: "box-shadow: none",
+    },
+  }}
 />
-
