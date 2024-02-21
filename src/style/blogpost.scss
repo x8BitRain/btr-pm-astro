@@ -1,4 +1,4 @@
-@import 'components/code-style.scss';
+@import "components/code-style.scss";
 
 body {
   padding: 0 2vw;
@@ -9,6 +9,11 @@ body {
 article {
   margin: 0 auto;
   padding: 40px;
+
+  p {
+    word-break: break-word;
+  }
+
   img {
     max-width: 100%;
     height: auto;
@@ -16,8 +21,7 @@ article {
     text-align: center;
     margin: 35px 0;
     border-radius: 8px;
-    box-shadow:
-      0 0 20px -10px rgba(0,0,0,0.25);
+    box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.25);
   }
   blockquote {
     font-size: 1.1rem;
@@ -46,16 +50,29 @@ article {
   em {
     color: #5d5d5d;
   }
+
+  code,
+  pre {
+    word-break: break-word;
+  }
 }
 
-h1, h2, h3, h4, h5, h6, em, p, li {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+p,
+li {
   .dark & {
     color: #fff;
   }
 }
 
 // Specific CSS tweaks per article
-article img[alt='787 Dreamliner'],
-article img[alt='Code example'] {
+article img[alt="787 Dreamliner"],
+article img[alt="Code example"] {
   box-shadow: none !important;
 }
