@@ -104,13 +104,12 @@ Skip the stripey header data, no idea what it contains or why it looks like this
   }}
 />
 
-I chose `
-` as the ending byte. It's not the very last byte of the file as there could be some data at the end that's important that we should not modify, I'm trying to avoid modification that will cause the model to not run or cause the daemon to crash.
+I chose `0x25E9F8B0` as the ending byte. It's not the very last byte of the file as there could be some data at the end that's important that we should not modify, I'm trying to avoid modification that will cause the model to not run or cause the daemon to crash.
 Just guessing values by looking at the "shape" of the hex data.
 
 Now to the actual corruption part, I chose the following settings:
 
-Add 2 bytes to every 120th byte.
+Add 2 bytes to every 120 bytes.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/3.png`}
@@ -171,7 +170,7 @@ Let's see what it says after corruption.
 I'm surprised that even worked at all.
 It's certainly not true, it's not even a fact, just random words with cyrillic, Chinese, Latvian(!?) characters inserted at random. Looks more like a Markov chain than a multi-billion parameter LLM, let's tone down the corruption a bit.
 
-Now what happens if I add 2 bytes to every 200th byte, aka 3mb of corrupted data out of 640mb.
+Now what happens if I add 2 bytes to every 200 bytes, aka 3mb of corrupted data out of 640mb.
 
 ---
 
@@ -198,7 +197,7 @@ Wrong area of the world, but I can see what it's getting at.
 
 It follows this pattern of falling over itself trying to mention relevant acronyms, spelling them out incorrectly in (sometimes (nested)) parentheses, in JSON format. Interesting...
 
-Let's try adding 2 bytes to every 280th byte:
+Let's try adding 2 bytes to every 280 bytes:
 
 ---
 
@@ -224,7 +223,7 @@ Mentioning a dollar value and clarifying (in (parentheses (again))) that it's ap
 "a bit more than 100m and two-and-a-half-inches from the city of Singapore" is really specific, despite not mentioning the thing that is 100m and two-and-a-half-inches from Singapore City,
 What is it? The Space Centre with the highest peak!? We'll never know.
 
-This seems like a pretty nice corruption value to ask it some more stuff, let's try a simple question:\
+This seems like a pretty nice corruption value to ask it some more stuff, let's try a simple question:
 
 ---
 
@@ -346,7 +345,7 @@ Inspired by [Janelle Shane's many attempts at getting AIs to generate recipes](h
 
 ---
 
-I did not Puffins were a native species in Hungary, Speaking of which, can it do a nice Goulash?
+I did not Puffins were a native species in Hungary, speaking of which, can it do a nice Goulash?
 
 ---
 
@@ -365,7 +364,7 @@ I did not Puffins were a native species in Hungary, Speaking of which, can it do
 
 ---
 
-Nothing like a blend of shiit and mushroom in Goulash, sounds delightful.
+Nothing like a blend of shiit and mushroom Goulash, sounds delightful.
 
 Maybe it can do pizza as well?
 
@@ -531,7 +530,7 @@ First a dry run, this is what the model generates without any corruption:
 
 Looks pretty normal, certainly not 100% true to life but gets the details right and the general look of the city.
 
-Now lets try adding 2 bytes to every 150th byte.
+Now lets try adding 2 bytes to every 150 bytes.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/22.png`}
@@ -781,7 +780,7 @@ It started to look like was getting better at generating a city or buildings as 
 />
 
 Then all of a sudden something recognizable, a very saturated, un-detailed and painterly looking picture of Charles Bridge over the Vltava.
-It's strange how it would regress back to generating random blobs of color then suddenly generate something visually coherent after lowering corruption value by 10/50 at a time.
+It's strange how it would regress back to generating random blobs of color then suddenly generate something visually coherent after lowering corruption value by 10/50 bytes at a time.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/40.png`}
@@ -827,7 +826,7 @@ Every subsequent generation at this corruption level is less detailed, brighter 
   }}
 />
 
-So these corruption values work, this time I'll try to add 9 bytes to every 500 bytes instead of just 2 bytes for every 500 bytes.
+So these corruption values work, this time I'll try to add 9 bytes every 500 bytes instead of just 2 bytes every 500 bytes.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/43.png`}
@@ -919,7 +918,7 @@ Shifting the corrupt every nth byte setting around some more results in similar 
   }}
 />
 
-I increased the amount from adding 9 bytes to every 500 byte to 30. This results in incredibly blown out photos that looks like every color option in Photoshop set to 1000.
+I increased the amount from adding 9 bytes to 30 bytes every 500 bytes. This results in incredibly blown out photos that looks like every color option in Photoshop set to 1000.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/49.png`}
@@ -962,7 +961,7 @@ As a bonus I tried Amsterdam instead of Prague. This is how your average tourist
   }}
 />
 
-Shifting the bytes around again to every 400 bytes, it now generates these interesting oil paint style images that are colored vaguely like a city.
+Shifting the bytes around again to modify every 400 bytes, it now generates these interesting oil paint style images that are colored vaguely like a city.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/51.png`}
@@ -1069,3 +1068,14 @@ As a bonus I tried a different, more basic prompt with some other corruption set
     },
   }}
 />
+
+### Conclusion
+
+This is dumb fun, there's a million different ways you can achieve corruptions like this, I only tried the most basic method as that's what the corruption software I used supported.
+For example, you could try switching bytes, swapping entire chunks of bytes, random byte intervals, corrupting one large chunk of bytes and playing "spot the corruption"
+with prompts until it starts generating nonsense when prompted with a specific topic that happened to stored in the corrupted part of the model.
+Or until you see a bison where there should have be a piano in your generated image.
+
+I was hoping for more random stuff to happen in the image generation models, but they seem to be the most difficult to corrupt as they're seemingly a lot more complex than text generators, there's a lot more to be explored corrupting GANs.
+
+For more dumb fun check out the [corrupt.wiki](https://corrupt.wiki/) for the video game equivalent of corruptions and [Janelle Shane's AI weirdness blog](https://www.aiweirdness.com/tag/recipes/) where she documents AI failing spectacularly.
