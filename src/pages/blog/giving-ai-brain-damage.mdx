@@ -66,7 +66,7 @@ To run the model I used [ollama.com](https://ollama.com/) as a way to interface 
 #### Method
 
 You can pretty trivially write a script that loops through all the bytes in a file and changes them at random, like [this one](https://github.com/Cocoatwix/Scares-Scrambler-S/blob/master/Engine.py#L422).
-But I'm going to use the classic, [Vinesauce ROM Corruptor]() that is a GUI wrapper around this concept with some extra parameters like how many bytes to skip before modifying a value.
+But I'm going to use the classic, [Vinesauce ROM Corruptor](https://corrupt.wiki/other-corruptors/classic-corruptors/vinesauce-rom-corruptor) that is a GUI wrapper around this concept with some extra parameters like how many bytes to skip before modifying a value.
 
 The model file I'm looking for is under `~/.ollama/models` on macOS, it contains the model files, the filenames are their SHA256 hashes.
 The one I'm looking for is the 673MB file, as it matches the size of the file that was downloaded via `ollama run tinyllama` [context](https://ollama.com/library/tinyllama).
