@@ -42,6 +42,11 @@
       "name": "CodePen",
       "link": "https://codepen.io/BitRain",
       "img": "codepen.svg"
+    },
+    {
+      "name": "Twitter/X",
+      "link": "https://twitter.com/x8BitRain",
+      "img": "twitter.svg"
     }
   ]
 }
