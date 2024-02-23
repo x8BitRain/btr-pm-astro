@@ -7,10 +7,10 @@ export interface Props {
   title: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, img } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
@@ -35,7 +35,12 @@ const { title, description } = Astro.props;
     <meta property="og:title" content="btr.pm" />
     <meta property="og:url" content={`https://btr.pm${Astro.url.pathname}`} />
     <meta name="og:description" content={description || title} />
-    <meta property="og:image" content="https://btr.pm/og.jpg" />
+    <meta
+      property="og:image"
+      content={img
+        ? `https://btr.pm${Astro.url.pathname}/${img}`
+        : "https://btr.pm/og.jpg"}
+    />
     <meta
       property="twitter:url"
       content={`https://btr.pm${Astro.url.pathname}`}
@@ -45,7 +50,12 @@ const { title, description } = Astro.props;
       property="twitter:description"
       content={description || "btr.pm - projects - photos - blog"}
     />
-    <meta property="twitter:image" content="https://btr.pm/og.jpg" />
+    <meta
+      property="twitter:image"
+      content={img
+        ? `https://btr.pm${Astro.url.pathname}/${img}`
+        : "https://btr.pm/og.jpg"}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

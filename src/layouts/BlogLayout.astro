@@ -4,12 +4,14 @@ import "../style/main.scss";
 import Layout from "./Layout.astro";
 export interface Props {
   title: string;
+  description: string;
+  img: string;
 }
 
-const { title, description } = Astro.props.content;
+const { title, description, img } = Astro.props.content;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} img={img}>
   <article>
     <slot />
   </article>
