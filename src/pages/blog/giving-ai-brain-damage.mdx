@@ -41,7 +41,7 @@ import isDev from "../../utils/isDev.js";
 
 ##### {frontmatter.published}
 
-Here's an idea: What would happen if you changed a bunch of different bytes in an AI model's file?
+Here's an idea: What would happen if you changed a bunch of different bytes in an AI's model file?
 
 ### **[Click here to skip to the results.](#the-results)**
 
@@ -51,24 +51,24 @@ They come in these formats like .safetensors or .ckpt or the old .BIN. They're b
 block counts and weights and biases, etc, encoded in a format specific to the method in which the model was trained.
 They might even be a [GGUF](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md) file, but otherwise it's just a binary data.
 
-What happens when you take one of these files and just, oh, I don't know, add 3 bytes to every 150th byte?
+What happens when you take one of these files and just, oh, I don't know, add 3 bytes to every byte, every 150 bytes?
 
 We know the effects of this with video games, ROM dumps can be altered with in the same manner often to comical and surreal effect, these are called [video game corruptions](https://corrupt.wiki/).
-Let's apply this same method to a chatbot/Large language model's files and see what happens, later I'll try an image generation model.
+Let's apply this same method to a chatbot/large language model's files and see what happens, later I'll try an image generation model.
 
 ### Corrupting large language models (LLMs)
 
 #### Setup
 
-I chose [tiny-llama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0/tree/main) to corrupt as it's a pretty lightweight model and small, about 640 MB.
+I chose [tiny-llama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0/tree/main) to corrupt as it's a pretty lightweight model at about 670 MB.
 To run the model I used [ollama.com](https://ollama.com/) as a way to interface with tiny-llama and the [open-webui](https://github.com/open-webui/open-webui) as a chat box to prompt it with.
 
 #### Method
 
-You can pretty trivially write a script that loops through all the bytes in a file and changes them at random, like [this one](https://github.com/Cocoatwix/Scares-Scrambler-S/blob/master/Engine.py#L422)
-but I'm going to use the classic, [Vinesauce ROM Corruptor]() that is a GUI wrapper around this concept with some extra parameters like how many bytes to skip before modifying a value.
+You can pretty trivially write a script that loops through all the bytes in a file and changes them at random, like [this one](https://github.com/Cocoatwix/Scares-Scrambler-S/blob/master/Engine.py#L422).
+But I'm going to use the classic, [Vinesauce ROM Corruptor]() that is a GUI wrapper around this concept with some extra parameters like how many bytes to skip before modifying a value.
 
-The model file I'm looking for is under `~/.ollama/models`, it's contains the model files, the filenames are their SHA256 hashes.
+The model file I'm looking for is under `~/.ollama/models` on macOS, it contains the model files, the filenames are their SHA256 hashes.
 The one I'm looking for is the 673MB file, as it matches the size of the file that was downloaded via `ollama run tinyllama` [context](https://ollama.com/library/tinyllama).
 Modifying this directly should be the go.
 
@@ -86,7 +86,7 @@ Modifying this directly should be the go.
 />
 
 To corrupt the data I'll need to choose a starting point and ending point, a hex address to start from and end on. We want to avoid the file header entirely as modifying that could render the file unreadable.
-There's a ton of information at the beginning of the file that looks like it could be important perhaps part of the header, in case some kind of check is run on that data to ensure validity I just skipped all of that and chose.
+There's a ton of information at the beginning of the file that looks like it could be important perhaps part of the header, in case some kind of check is run on that data to ensure validity I just skipped all of that and chose
 `0x005600C2` as a starting point
 
 Skip the stripey header data, no idea what it contains or why it looks like this, I chose the starting byte mostly as an educated guess.
@@ -109,7 +109,7 @@ Just guessing values by looking at the "shape" of the hex data.
 
 Now to the actual corruption part, I chose the following settings:
 
-Add 2 bytes to every 120 bytes.
+Add 2 bytes every 120 bytes.
 
 <Picture
   src={`/src/data/images/blog/${frontmatter.slug}/3.png`}
@@ -170,7 +170,7 @@ Let's see what it says after corruption.
 I'm surprised that even worked at all.
 It's certainly not true, it's not even a fact, just random words with cyrillic, Chinese, Latvian(!?) characters inserted at random. Looks more like a Markov chain than a multi-billion parameter LLM, let's tone down the corruption a bit.
 
-Now what happens if I add 2 bytes to every 200 bytes, aka 3mb of corrupted data out of 640mb.
+Now what happens if I add 2 bytes every 200 bytes, aka 3mb of corrupted data out of 670mb.
 
 ---
 
@@ -197,7 +197,7 @@ Wrong area of the world, but I can see what it's getting at.
 
 It follows this pattern of falling over itself trying to mention relevant acronyms, spelling them out incorrectly in (sometimes (nested)) parentheses, in JSON format. Interesting...
 
-Let's try adding 2 bytes to every 280 bytes:
+Let's try adding 2 bytes every 280 bytes:
 
 ---
 
